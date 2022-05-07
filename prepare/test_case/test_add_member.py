@@ -8,7 +8,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-from utils.log_utils import logger
+from prepare.utils.log_utils import logger
 
 
 class TestAddMember:

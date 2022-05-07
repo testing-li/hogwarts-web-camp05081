@@ -14,6 +14,10 @@ class TestCookieLogin:
         """前置动作"""
         self.driver = webdriver.Chrome()
 
+    def teardown_class(self):
+        """后置处理"""
+        self.driver.quit()
+
     def test_save_cookies(self):
         """获取cookie"""
 

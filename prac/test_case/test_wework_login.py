@@ -8,45 +8,38 @@ import yaml
 from selenium import webdriver
 
 
-class TestCookieLogin:
+class TestWeworkLogin:
 
     def setup_class(self):
-        """前置动作"""
+        """前置处理"""
         self.driver = webdriver.Chrome()
 
     def teardown_class(self):
         """后置处理"""
-        self.driver.quit()
+        # self.driver.quit()
+        pass
 
     def test_save_cookies(self):
-        """获取cookie"""
-
-        # 1、访问企业微信首页
-        self.driver.get("https://work.weixin.qq.com/wework_admin/frame#index")
-
-        # 2、直接等待，手工扫码
+        """保存cookies"""
+        # 1、访问企业微信登录页面
+        self.driver.get("https://work.weixin.qq.com/wework_admin/loginpage_wx")
+        # 2、手工扫码（直接等待）
         time.sleep(10)
-
-        # 3、登录成功后，获取cookie
+        # 3、获取浏览器cookies
         cookies = self.driver.get_cookies()
-
-        # 4、保存cookie
+        # 4、保存cookies
         with open("../data/cookies.yaml", "w") as f:
             yaml.safe_dump(data=cookies, stream=f)
 
-    def test_add_cookie(self):
+    def test_get_cookie(self):
         """植入cookie"""
-
-        # 1、访问企业微信首页 CookieDomain
-        self.driver.get("https://work.weixin.qq.com/wework_admin/frame#index")
-
-        # 2、获取本地 cookies
+        # 1、访问企业微信首页Domain
+        self.driver.get("https://work.weixin.qq.com/wework_admin/frame")
+        # 2、获取本地的cookie
         with open("../data/cookies.yaml", "r") as f:
             cookies = yaml.safe_load(f)
-
-        # 3、植入cookies
+        # 3、植入cookie
         for ck in cookies:
             self.driver.add_cookie(ck)
-
         # 4、访问企业微信首页
-        self.driver.get("https://work.weixin.qq.com/wework_admin/frame#index")
+        self.driver.get("https://work.weixin.qq.com/wework_admin/frame")

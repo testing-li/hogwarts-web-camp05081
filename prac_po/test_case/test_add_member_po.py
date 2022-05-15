@@ -2,14 +2,8 @@
 __author__ = '霍格沃兹测试开发学社'
 __desc__ = '更多测试开发技术探讨，请访问：https://ceshiren.com/t/topic/15860'
 """
-import yaml
-from faker import Faker
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
 
-from prac.utils.log_utils import logger
+from faker import Faker
 from prac_po.page_object.login_page import LoginPage
 
 

@@ -2,6 +2,7 @@
 __author__ = '霍格沃兹测试开发学社'
 __desc__ = '更多测试开发技术探讨，请访问：https://ceshiren.com/t/topic/15860'
 """
+import pytest
 import yaml
 from faker import Faker
 from selenium import webdriver
@@ -10,6 +11,7 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
 from prac.utils.log_utils import logger
+
 
 
 class TestContact:
@@ -40,8 +42,8 @@ class TestContact:
         self.driver.get("https://work.weixin.qq.com/wework_admin/frame")
 
     def teardown_class(self):
-        self.driver.quit()
-        # pass
+        # self.driver.quit()
+        pass
 
     def test_add_member_contact(self):
         """通讯录页面：添加成员"""
@@ -71,7 +73,10 @@ class TestContact:
 
         assert "保存成功" == tips_value
 
-    def test_add_dept_contact(self):
+    # @pytest.mark.parametrize(argnames="username,acctid,mobile, expect",
+    #                          argvalues=[("xxx", "xx", "xx", "新建部门成功"),
+    #                                     ("xxx", "xx", "xx", "部门已存在")])
+    def test_add_dept_contact(self, username,acctid,mobile, expect):
         """通讯录页面：添加部门"""
 
         # 点击通讯录菜单
